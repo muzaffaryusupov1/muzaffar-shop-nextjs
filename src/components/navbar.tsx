@@ -5,7 +5,13 @@ const Navbar = () => {
 	return (
 		<header className='flex items-center px-4 md:px-12 py-2 justify-between fixed top-0 w-full z-50 shadow bg-white'>
 			<Link href={'/'}>
-				<Image src={'/site-logo.png'} alt='site logo' width={150} height={40} />
+				<Image
+					src={'/site-logo.png'}
+					alt='site logo'
+					width={150}
+					height={40}
+					style={{ width: 'auto', height: 'auto' }}
+				/>
 			</Link>
 
 			<div className='flex items-center space-x-2.5 text-sm'>

@@ -1,6 +1,7 @@
 'use client'
 
 import CustomImage from '@/components/image'
+import Button from '@/components/ui/button'
 import { ProductType } from '@/interface'
 import { StarIcon as StarIconOutline } from '@heroicons/react/24/outline'
 import { StarIcon } from '@heroicons/react/24/solid'
@@ -211,14 +212,12 @@ const ShoppingCard = () => {
 						<h1 className='mt-5 text-[36px] font-bold text-slate-800 lg:text-[50px]'>
 							Shopping cart is empty
 						</h1>
-						<p className='text-slate-600 mt-5 lg:text-lg'>
+						<p className='text-slate-600 mt-5 lg:text-lg mb-4'>
 							The page you are looking for doesn't exist or <br />
 							has been removed.
 						</p>
 						<Link href={'/products'}>
-							<button className='button bg-blue-600 mt-4 text-white border-transparent hover:border-blue-600 hover:bg-transparent hover:text-black'>
-								Products
-							</button>
+							<Button>Submit</Button>
 						</Link>
 					</div>
 				</div>

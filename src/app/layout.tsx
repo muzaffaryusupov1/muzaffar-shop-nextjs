@@ -1,3 +1,4 @@
+import Footer from '@/components/footer'
 import Navbar from '@/components/navbar'
 import type { Metadata } from 'next'
 import { Montserrat } from 'next/font/google'
@@ -18,6 +19,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 				<Navbar />
 				<Toaster />
 				{children}
+				<Footer />
 			</body>
 		</html>
 	)

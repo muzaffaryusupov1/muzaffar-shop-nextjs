@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import Button from './ui/button'
 
 const Navbar = () => {
 	return (
@@ -22,11 +23,12 @@ const Navbar = () => {
 					<Link href={'/products'} className='mr-5 hover:text-gray-900'>
 						All products
 					</Link>
+					<Link href={'/contacts'} className='mr-5 hover:text-gray-900'>
+						Contacts
+					</Link>
 				</nav>
 				<Link href={'/shopping-cart'}>
-					<button className='button bg-blue-600 text-white border-transparent hover:border-blue-600 hover:bg-transparent hover:text-blue-600'>
-						My bag
-					</button>
+					<Button>My bag</Button>
 				</Link>
 			</div>
 		</header>

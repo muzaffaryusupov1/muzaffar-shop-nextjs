@@ -1,6 +1,7 @@
 'use client'
 
 import CustomImage from '@/components/image'
+import Button from '@/components/ui/button'
 import { ProductType } from '@/interface'
 import { Dialog } from '@headlessui/react'
 import { StarIcon as StarIconOutline } from '@heroicons/react/24/outline'
@@ -62,14 +63,14 @@ const ProductDetailedPage = () => {
 			<div className='fixed inset-0 bg-black/30' aria-hidden='true' />
 
 			<div className='fixed inset-0 overflow-y-auto'>
-				<div className='flex min-h-full items-center justify-center p-4'>
+				<div className='flex min-h-full items-center justify-center p-4 '>
 					<Dialog.Panel className={'mx-auto max-w-3xl rounded bg-white p-10'}>
 						{loading ? (
 							<div className='h-8 w-8 rounded-full border-2 border-dotted border-blue-600 animate-spin' />
 						) : (
-							<div className='flex gap-x-8 h-96'>
+							<div className='flex gap-x-8 max-md:flex-col max-md:items-center max-md:max-h-[500px]'>
 								{product?.image && (
-									<div className='relative w-72 h-full hidden md:inline'>
+									<div className='relative w-72 max-md:h-[500px]'>
 										<CustomImage product={product} fill />
 									</div>
 								)}
@@ -97,19 +98,16 @@ const ProductDetailedPage = () => {
 										<p className='line-clamp-5 text-sm'>{product?.description}</p>
 									</div>
 
-									<div className='space-y-3 text-sm'>
+									<div className='space-y-3 text-sm mt-7'>
 										<button
-											className='button w-full bg-blue-600 text-white border-transparent hover:border-blue-600 hover:bg-transparent hover:text-blue-600'
+											className='button w-full text-blue-600 bg-transparent border-blue-600 hover:bg-blue-600 hover:text-white hover:border-transparent'
 											onClick={handleClick}
 										>
 											Add to bag
 										</button>
-										<button
-											onClick={() => window.location.reload()}
-											className='button w-full text-blue-600 bg-transparent border-blue-600 hover:bg-blue-600 hover:text-white hover:border-transparent'
-										>
-											View full detail
-										</button>
+										<div onClick={() => window.location.reload()} role='button'>
+											<Button className='w-full'>View full detail</Button>
+										</div>
 									</div>
 								</div>
 							</div>

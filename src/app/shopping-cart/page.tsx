@@ -4,12 +4,59 @@ import CustomImage from '@/components/image'
 import { ProductType } from '@/interface'
 import { StarIcon as StarIconOutline } from '@heroicons/react/24/outline'
 import { StarIcon } from '@heroicons/react/24/solid'
+import { useState } from 'react'
 
 const ShoppingCard = () => {
-	const products: ProductType[] = JSON.parse(localStorage.getItem('carts') as string) || []
+	const [products, setProducts] = useState<ProductType[]>(
+		JSON.parse(localStorage.getItem('carts') as string) || []
+	)
+
+	const removeProduct = (id: number) => {
+		const updatedCart = products.filter(product => product.id !== id)
+		localStorage.setItem('carts', JSON.stringify(updatedCart))
+		setProducts(updatedCart)
+	}
+
+	const handleIncrement = (id: number) => {
+		const updatedCart = products.map(product => {
+			if (product.id === id) {
+				return {
+					...product,
+					quantity: product.quantity + 1,
+				}
+			}
+
+			return product
+		})
+
+		localStorage.setItem('carts', JSON.stringify(updatedCart))
+		setProducts(updatedCart)
+	}
+
+	const handleDecrement = (id: number) => {
+		const existProduct = products.find(c => c.id === id)
+
+		if (existProduct?.quantity === 1) {
+			removeProduct(existProduct.id)
+		} else {
+			const updatedCart = products.map(product => {
+				if (product.id === id) {
+					return {
+						...product,
+						quantity: product.quantity - 1,
+					}
+				}
+
+				return product
+			})
+
+			localStorage.setItem('carts', JSON.stringify(updatedCart))
+			setProducts(updatedCart)
+		}
+	}
 
 	return (
-		<div className='h-full bg-gray-100 pt-20'>
+		<div className='h-full min-h-screen bg-gray-100 pt-20'>
 			<h1 className='mb-10 text-center text-2xl font-bold'>Cart Items</h1>
 			<div className='mx-auto max-w-5xl justify-center px-6 md:flex md:space-x-6 xl:px-0'>
 				<div className='rounded-lg md:w-2/3'>
@@ -41,14 +88,20 @@ const ShoppingCard = () => {
 								</div>
 								<div className='mt-4 flex justify-between sm:space-y-6 sm:mt-0 sm:block sm:space-x-6'>
 									<div className='flex items-center border-gray-100'>
-										<span className='cursor-pointer rounded-l bg-gray-100 py-1 px-3.5 duration-100 hover:bg-blue-500 hover:text-blue-50'>
+										<span
+											className='cursor-pointer rounded-l bg-gray-100 py-1 px-3.5 duration-100 hover:bg-blue-500 hover:text-blue-50 select-none'
+											onClick={() => handleDecrement(product.id)}
+										>
 											{' '}
 											-{' '}
 										</span>
 										<p className='px-3 bg-white text-sm outline-none text-center'>
 											{product.quantity}
 										</p>
-										<span className='cursor-pointer rounded-r bg-gray-100 py-1 px-3 duration-100 hover:bg-blue-500 hover:text-blue-50'>
+										<span
+											className='cursor-pointer rounded-r bg-gray-100 py-1 px-3 duration-100 hover:bg-blue-500 hover:text-blue-50 select-none'
+											onClick={() => handleIncrement(product.id)}
+										>
 											{' '}
 											+{' '}
 										</span>
@@ -67,6 +120,7 @@ const ShoppingCard = () => {
 											strokeWidth='1.5'
 											stroke='currentColor'
 											className='h-5 w-5 cursor-pointer duration-150 hover:text-red-500'
+											onClick={() => removeProduct(product.id)}
 										>
 											<path strokeLinecap='round' strokeLinejoin='round' d='M6 18L18 6M6 6l12 12' />
 										</svg>

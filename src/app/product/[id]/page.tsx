@@ -27,7 +27,10 @@ const ProductDetailedPage = async ({ params: { id } }: Props) => {
 								{product.title}
 							</h1>
 							<span className='title-font font-medium text-xl text-gray-900 mt-4'>
-								${product.price}
+								{product.price.toLocaleString('en-US', {
+									style: 'currency',
+									currency: 'usd',
+								})}
 							</span>
 							<div className='flex mb-4'>
 								<div className='flex items-center text-sm my-4'>

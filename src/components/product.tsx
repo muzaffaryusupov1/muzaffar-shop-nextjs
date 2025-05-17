@@ -19,7 +19,12 @@ const Product: FC<{ product: ProductType }> = ({ product }) => {
 			</h3>
 			<div className='font-semibold flex items-center justify-between mt-4 mb-1'>
 				<p className='w-44 truncate'>{product.title}</p>
-				<p>${product.price}</p>
+				<p>
+					{product.price.toLocaleString('en-US', {
+						style: 'currency',
+						currency: 'usd',
+					})}
+				</p>
 			</div>
 			<p className='leading-relaxed text-base line-clamp-2 '>{product.description}</p>
 		</Link>

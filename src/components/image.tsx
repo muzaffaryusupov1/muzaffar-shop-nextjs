@@ -13,15 +13,31 @@ const CustomImage: FC<Props> = ({ product, fill }) => {
 	const [isLoading, setIsLoading] = useState(true)
 
 	return (
-		<Image
-			src={product.image}
-			alt={product.title}
-			fill
-			className={`object-contain duration-700 ease-in-out group-hover:opacity-75 ${
-				isLoading ? 'scale-110 blur-2xl grayscale' : 'scale-100 blur-0 grayscale-0'
-			}`}
-			onLoadingComplete={() => setIsLoading(false)}
-		/>
+		<>
+			{fill ? (
+				<Image
+					src={product.image}
+					alt={product.title}
+					fill
+					className={`object-contain duration-700 ease-in-out group-hover:opacity-75 ${
+						isLoading ? 'scale-110 blur-2xl grayscale' : 'scale-100 blur-0 grayscale-0'
+					}`}
+					onLoadingComplete={() => setIsLoading(false)}
+				/>
+			) : (
+				<Image
+					src={product.image}
+					alt={product.title}
+					width={400}
+					height={350}
+					className={`lg:w-1/2 w-full lg:h-auto h-64 object-contain object-center rounded duration-700 ease-in-out group-hover:opacity-75 ${
+						isLoading ? 'scale-110 blur-2xl grayscale' : 'scale-100 blur-0 grayscale-0'
+					}`}
+					onLoadingComplete={() => setIsLoading(false)}
+					style={{ width: 'auto', height: 'auto' }}
+				/>
+			)}
+		</>
 	)
 }
 

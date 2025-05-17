@@ -26,6 +26,9 @@ const ProductDetailedPage = async ({ params: { id } }: Props) => {
 							<h1 className='text-gray-900 text-3xl title-font font-medium mb-1'>
 								{product.title}
 							</h1>
+							<span className='title-font font-medium text-xl text-gray-900 mt-4'>
+								${product.price}
+							</span>
 							<div className='flex mb-4'>
 								<div className='flex items-center text-sm my-4'>
 									<p>{product?.rating.rate}</p>
@@ -43,14 +46,6 @@ const ProductDetailedPage = async ({ params: { id } }: Props) => {
 								</div>
 							</div>
 							<p className='leading-relaxed'>{product.description}</p>
-							<div className='flex pt-5 border-t-2 border-gray-100 mt-5'>
-								<span className='title-font font-medium text-2xl text-gray-900'>
-									${product.price}
-								</span>
-								<button className='button flex ml-auto bg-blue-600 text-white border-transparent hover:border-blue-600 hover:bg-transparent hover:text-blue-600'>
-									Add to bag
-								</button>
-							</div>
 						</div>
 					</div>
 				</div>

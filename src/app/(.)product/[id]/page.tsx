@@ -7,13 +7,14 @@ import { Dialog } from '@headlessui/react'
 import { StarIcon as StarIconOutline } from '@heroicons/react/24/outline'
 import { StarIcon } from '@heroicons/react/24/solid'
 import { useParams, useRouter } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { toast } from 'sonner'
 
 const ProductDetailedPage = () => {
 	const [loading, setLoading] = useState(false)
 	const [product, setProduct] = useState<ProductType>()
 	const [isOpen, setIsOpen] = useState(true)
+	const refDiv = useRef(null)
 
 	const { id } = useParams()
 	const router = useRouter()
@@ -59,11 +60,17 @@ const ProductDetailedPage = () => {
 	}
 
 	return (
-		<Dialog open={isOpen} onClose={handleClose} className='relative z-50'>
+		<Dialog
+			initialFocus={refDiv}
+			as='div'
+			open={isOpen}
+			onClose={handleClose}
+			className='relative z-50'
+		>
 			<div className='fixed inset-0 bg-black/30' aria-hidden='true' />
 
-			<div className='fixed inset-0 overflow-y-auto'>
-				<div className='flex min-h-full items-center justify-center p-4 '>
+			<div ref={refDiv} className='fixed inset-0 overflow-y-auto'>
+				<div className='flex min-h-full items-center justify-center p-4'>
 					<Dialog.Panel className={'mx-auto max-w-3xl rounded bg-white p-10'}>
 						{loading ? (
 							<div className='h-8 w-8 rounded-full border-2 border-dotted border-blue-600 animate-spin' />

@@ -12,6 +12,7 @@
     "@headlessui/react": "^1.7.19",
     "@heroicons/react": "^2.2.0",
     "next": "13.5.11",
+    "nprogress": "^0.2.0",
     "react": "^18",
     "react-dom": "^18",
     "react-stars": "^2.2.5",
@@ -19,6 +20,7 @@
   },
   "devDependencies": {
     "@types/node": "^20",
+    "@types/nprogress": "^0.2.3",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "@types/react-stars": "^2.2.4",
